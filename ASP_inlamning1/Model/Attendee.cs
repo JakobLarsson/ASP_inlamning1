@@ -15,5 +15,7 @@ namespace ASP_inlamning1.Model
         public string email { get; set; }
 
         public int phoneNumber { get; set; }
+        
+        List<Event> events { get; set; } 
     }
 }

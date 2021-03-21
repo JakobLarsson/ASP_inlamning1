@@ -20,7 +20,7 @@ namespace ASP_inlamning1
             {
                 var services = scope.ServiceProvider;
                 var context = services.GetRequiredService<Data.ApplicationDbContext>();
-                //context.seed();
+                context.Seed();
             }
 
 
