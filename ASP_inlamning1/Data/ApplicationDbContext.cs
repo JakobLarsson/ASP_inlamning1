@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ASP_inlamning1.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -16,6 +16,11 @@ namespace ASP_inlamning1.Data
         public DbSet<Model.Attendee> Attendees { get; set; }
         public DbSet<Model.Event> Events { get; set; }
         public DbSet<Model.Organizer> Organizers { get; set; }
+
+        public void Seed()
+        {
+
+        }
 
 
     }
