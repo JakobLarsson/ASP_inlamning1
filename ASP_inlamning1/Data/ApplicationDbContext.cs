@@ -21,9 +21,9 @@ namespace ASP_inlamning1.Data
         
         public void Seed()
         {
-            this.Attendees.RemoveRange();
-            this.Events.RemoveRange();
-            this.Organizers.RemoveRange();
+            this.Attendees.RemoveRange(this.Attendees);
+            this.Events.RemoveRange(this.Events);
+            this.Organizers.RemoveRange(this.Organizers);
 
             this.Attendees.AddRange(new List<Model.Attendee>() 
             { 
