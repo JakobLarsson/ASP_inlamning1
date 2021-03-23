@@ -1,0 +1,45 @@
+﻿@page
+@model ASP_inlamning1.Pages.EventsModel
+
+@{
+    ViewData["Title"] = "Events";
+}
+
+<h1>Events</h1>
+
+ 
+<div class="accordion" id="accordionExample">
+    @for (int i = 0; i < Model.Event.Count; i++)
+    {
+        <div class="card">
+            <div class="card-header" id="headingOne_@i">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne_@i" aria-expanded="true" aria-controls="collapseOne">
+                        @Html.DisplayFor(m => Model.Event[i].title)
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne_@i" class="collapse show" aria-labelledby="headingOne_@i" data-parent="#accordionExample">
+                <div class="card-body">
+                    @Html.DisplayFor(m => Model.Event[i].description)
+                    <button asp-page="Join" id="btn_Join" type="button" class="btn btn-success ml-auto">Join!</button>
+                </div>
+            </div>
+        </div>
+    }
+
+    
+</div>
+
+
+    
+
+
+   
+
+
+
+
+
+

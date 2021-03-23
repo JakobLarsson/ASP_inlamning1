@@ -35,12 +35,16 @@ namespace ASP_inlamning1.Data
 
             this.Events.AddRange(new List<Model.Event>() 
             {
-                new Model.Event(){title = "Summerburst", organizer_id = 1, description = "This is the sickest festival !", place = "Globen", address= "Globengatan", date = new DateTime(20200101), spots_avalible = 10000}
+                new Model.Event(){title = "Summerburst", organizer_id = 1, description = "This is the sickest festival !", place = "Globen", address= "Globengatan", date = new DateTime(20200101), spots_avalible = 10000},
+                new Model.Event(){title = "PoolDay", organizer_id = 1, description = "Fun pool day for the whole family, comedians and artist will entertain you the whole day", place = "Flahultsbadet", address= "Grågatan", date = new DateTime(20200102), spots_avalible = 500},
+                new Model.Event(){title = "WhiteParty", organizer_id = 2, description = "Small party with dress code: White clothes only", place = "Puben runt hörnet", address= "Bargatan", date = new DateTime(20200510), spots_avalible = 50}
             });
 
             this.Organizers.AddRange(new List<Model.Organizer>()
             {
-                new Model.Organizer(){name = "SwedishClub AB", email = "sc.info@hotmail.com", phoneNumber = 082334566}
+                new Model.Organizer(){name = "SwedishClub AB", email = "sc.info@hotmail.com", phoneNumber = 082334566},
+                new Model.Organizer(){name = "FestFixarna", email = "fest@hotmail.com", phoneNumber = 070665544},
+                new Model.Organizer(){name = "SickestParty", email = "sickestparty.info@hotmail.com", phoneNumber = 08114477}
             });
 
             this.SaveChanges();
