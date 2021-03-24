@@ -10,11 +10,11 @@ using ASP_inlamning1.Model;
 
 namespace ASP_inlamning1.Pages
 {
-    public class JoinModel : PageModel
+    public class joinModel : PageModel
     {
         private readonly ASP_inlamning1.Data.ApplicationDbContext _context;
 
-        public JoinModel(ASP_inlamning1.Data.ApplicationDbContext context)
+        public joinModel(ASP_inlamning1.Data.ApplicationDbContext context)
         {
             _context = context;
         }
