@@ -23,19 +23,22 @@ namespace ASP_inlamning1.Pages
 
         public Attendee Attendee { get; set; }
 
+        public bool Joined { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
+            
             Event = await _context.Events.Include(o => o.Attendee).FirstOrDefaultAsync(m => m.ID == id);
 
             if (Event == null)
             {
                 return NotFound();
             }
+            Joined = false;
             return Page();
         }
 
@@ -54,9 +57,9 @@ namespace ASP_inlamning1.Pages
 
             _context.SaveChanges();
 
-            
-
+            Joined = true;
             return Page();
+           // return RedirectToPage("/JoinedEvents");
         }
     }
 }

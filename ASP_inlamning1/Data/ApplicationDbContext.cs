@@ -43,7 +43,7 @@ namespace ASP_inlamning1.Data
                 
                 new Model.Event(){title = "PoolDay", organizer_id = 1, description = "Fun pool day for the whole family, comedians and artist will entertain you the whole day", place = "Flahultsbadet",
                     address= "Grågatan", date = new DateTime(20200102), spots_avalible = 500, Attendee = new List<Model.Attendee>{ user1}},
-                //new Model.Event(){title = "WhiteParty", organizer_id = 2, description = "Small party with dress code: White clothes only", place = "Puben runt hörnet", address= "Bargatan", date = new DateTime(20200510), spots_avalible = 50}
+                new Model.Event(){title = "WhiteParty", organizer_id = 2, description = "Small party with dress code: White clothes only", place = "Puben runt hörnet", address= "Bargatan", date = new DateTime(20200510), spots_avalible = 50}
             });
 
             this.Organizers.AddRange(new List<Model.Organizer>()
