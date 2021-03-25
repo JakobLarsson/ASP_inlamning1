@@ -1,11 +1,31 @@
 ﻿@page
-@model ASP_inlamning1.Pages.joinModel
+@model ASP_inlamning1.Pages.JoinModel
 
 @{
-    ViewData["Title"] = "join";
+    ViewData["Title"] = "Join";
 }
 
-<h1>join</h1>
+<h1>Join</h1>
+
+<h4>Event</h4>
+<hr />
+
+<div class="card " style="width: 40rem;">
+    <div class="card-body">
+
+        <h5 class="card-title">@Html.DisplayNameFor(model => model.Event.title) @Html.DisplayFor(model => model.Event.title)</h5>
+        <p class="card-text text-center">@Html.DisplayFor(model => model.Event.description)</p>
+        <p></p>
+    </div>
+</div>
+<br>
+
+<div>
+    <form method="post">
+        <input type="submit">
+    </form>
+</div>>
+
 
 <div>
     <h4>Event</h4>

@@ -23,9 +23,9 @@ namespace ASP_inlamning1.Model
 
         public int spots_avalible { get; set; }
 
-        List<Attendee> Attendees { get; set; }
+        public ICollection<Attendee> Attendee { get; set; }
 
-        
+
 
     }
 }

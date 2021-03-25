@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ASP_inlamning1.Data.Migrations
+namespace ASP_inlamning1.Migrations
 {
-    public partial class recoverIdentityTest : Migration
+    public partial class firstTest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,6 +44,55 @@ namespace ASP_inlamning1.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Attendees",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    phoneNumber = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Attendees", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    organizer_id = table.Column<int>(type: "int", nullable: false),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    place = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    spots_avalible = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Organizers",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    phoneNumber = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Organizers", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -152,6 +201,34 @@ namespace ASP_inlamning1.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "attendeEvent",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AttendeID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EventID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AttendeeID = table.Column<int>(type: "int", nullable: true),
+                    EventID1 = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_attendeEvent", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_attendeEvent_Attendees_AttendeeID",
+                        column: x => x.AttendeeID,
+                        principalTable: "Attendees",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_attendeEvent_Events_EventID1",
+                        column: x => x.EventID1,
+                        principalTable: "Events",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -190,6 +267,16 @@ namespace ASP_inlamning1.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_attendeEvent_AttendeeID",
+                table: "attendeEvent",
+                column: "AttendeeID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_attendeEvent_EventID1",
+                table: "attendeEvent",
+                column: "EventID1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -210,10 +297,22 @@ namespace ASP_inlamning1.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "attendeEvent");
+
+            migrationBuilder.DropTable(
+                name: "Organizers");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Attendees");
+
+            migrationBuilder.DropTable(
+                name: "Events");
         }
     }
 }

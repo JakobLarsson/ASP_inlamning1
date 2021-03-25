@@ -7,26 +7,26 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ASP_inlamning1.Data.Migrations
+namespace ASP_inlamning1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210321142603_recoverIdentityTest")]
-    partial class recoverIdentityTest
+    [Migration("20210325083033_firstTest")]
+    partial class firstTest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.4")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("ASP_inlamning1.Model.Attendee", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("email")
                         .HasColumnType("nvarchar(max)");
@@ -47,7 +47,7 @@ namespace ASP_inlamning1.Data.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("address")
                         .HasColumnType("nvarchar(max)");
@@ -80,7 +80,7 @@ namespace ASP_inlamning1.Data.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("email")
                         .HasColumnType("nvarchar(max)");
@@ -94,6 +94,34 @@ namespace ASP_inlamning1.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Organizers");
+                });
+
+            modelBuilder.Entity("ASP_inlamning1.Model.attendeEvent", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AttendeID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("AttendeeID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EventID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("EventID1")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AttendeeID");
+
+                    b.HasIndex("EventID1");
+
+                    b.ToTable("attendeEvent");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -128,7 +156,7 @@ namespace ASP_inlamning1.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -217,7 +245,7 @@ namespace ASP_inlamning1.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -296,6 +324,21 @@ namespace ASP_inlamning1.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("ASP_inlamning1.Model.attendeEvent", b =>
+                {
+                    b.HasOne("ASP_inlamning1.Model.Attendee", "Attendee")
+                        .WithMany("attendeEvent")
+                        .HasForeignKey("AttendeeID");
+
+                    b.HasOne("ASP_inlamning1.Model.Event", "Event")
+                        .WithMany("attendeEvent")
+                        .HasForeignKey("EventID1");
+
+                    b.Navigation("Attendee");
+
+                    b.Navigation("Event");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -345,6 +388,16 @@ namespace ASP_inlamning1.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ASP_inlamning1.Model.Attendee", b =>
+                {
+                    b.Navigation("attendeEvent");
+                });
+
+            modelBuilder.Entity("ASP_inlamning1.Model.Event", b =>
+                {
+                    b.Navigation("attendeEvent");
                 });
 #pragma warning restore 612, 618
         }

@@ -16,6 +16,6 @@ namespace ASP_inlamning1.Model
 
         public int phoneNumber { get; set; }
         
-        List<Event> events { get; set; } 
+        public ICollection<Event> Event{ get; set; } 
     }
 }
