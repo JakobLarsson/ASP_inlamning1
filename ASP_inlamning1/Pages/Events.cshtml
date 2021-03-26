@@ -24,10 +24,20 @@
                     </h2>
                 </div>
 
-                <div id="collapseOne_@i" class="collapse show" aria-labelledby="headingOne_@i" data-parent="#accordionExample">
+                <div id="collapseOne_@i" class="collapse" aria-labelledby="headingOne_@i" data-parent="#accordionExample">
                     <div class="card-body">
-                        @Html.DisplayFor(m => item.description)
-                        <a asp-page="./Join" asp-route-id="@item.ID" class="btn btn-success">Join</a>
+                        <div class="row">
+                            <div class="col-6">
+                                @Html.DisplayFor(m => item.description)
+                                @Html.DisplayFor(m => item.organizer_id)
+                            </div>
+                            <div class="col-6 right-info text-right">
+                                <p>Location: @Html.DisplayFor(m => item.place)</p>                                                    
+                                <p>Spots: @Html.DisplayFor(m => item.spots_avalible) </p>                                
+                                <a asp-page="./Join" asp-route-id="@item.ID" class="btn btn-success join-btn">Join</a>
+                            </div>
+                        
+                        </div>
                     </div>
                 </div>
             </div>
