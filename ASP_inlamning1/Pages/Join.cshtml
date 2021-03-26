@@ -11,39 +11,50 @@
 <hr />
 @if (Model.Joined == false)
 {
-    <div class="card text-center align-self-center" style="width: 40rem;">
+    <div class="card card-joinpage text-center align-self-center" style="width: 40rem;">
         <div class="card-body">
 
-            <h5 class="card-title">@Html.DisplayNameFor(model => model.Event.title) @Html.DisplayFor(model => model.Event.title)</h5>
-            <p class="card-text text-center">@Html.DisplayFor(model => model.Event.description)</p>
-            <p></p>
+            <h5 class="card-title text-center">@Html.DisplayFor(model => model.Event.title)</h5>
+            <p class="card-text text-center">Description @Html.DisplayFor(model => model.Event.description)</p>
+            <p class="card-text text-center">Where: @Html.DisplayFor(model => model.Event.place)</p>
+            <p class="card-text text-center">Adress: @Html.DisplayFor(model => model.Event.address)</p>
+            <p class="card-text text-center">When: @Html.DisplayFor(model => model.Event.date)</p>
+            <p class="card-text text-center">Orginizer: @Html.DisplayFor(model => model.Event.organizer_id)</p>
+            <p class="card-text text-center">Spots avalible: @Html.DisplayFor(model => model.Event.spots_avalible)</p>
+
         </div>
     </div>
     <br>
 
-    <div class="align-self-center">
+    <div class="align-self-center text-center">
         <form method="post">
-            <input class="btn btn-success" type="submit" value="Join">
+            <input class="btn btn-lg btn-success " type="submit" value="Join">
         </form>
     </div>
 }
 
 @if(Model.Joined == true) 
     {
-            <div class="card " style="width: 40rem;">
+            <div class="card card-joinpage" style="width: 40rem;">
                 <div class="card-body">
 
-                    <h5 class="card-title">@Html.DisplayNameFor(model => model.Event.title) @Html.DisplayFor(model => model.Event.title)</h5>
-                    <p class="card-text text-center">@Html.DisplayFor(model => model.Event.description)</p>
-                    <p></p>
+                    <h5 class="card-title text-center" >@Html.DisplayFor(model => model.Event.title)</h5>
+                    <p class="card-text text-center">Description @Html.DisplayFor(model => model.Event.description)</p>
+                    <p class="card-text text-center">Where: @Html.DisplayFor(model => model.Event.place)</p>
+                    <p class="card-text text-center">Adress: @Html.DisplayFor(model => model.Event.address)</p>
+                    <p class="card-text text-center">When: @Html.DisplayFor(model => model.Event.date)</p>
+                    <p class="card-text text-center">Orginizer: @Html.DisplayFor(model => model.Event.organizer_id)</p>
+                    <p class="card-text text-center">Spots avalible: @Html.DisplayFor(model => model.Event.spots_avalible)</p>
+                    
+                    
                 </div>
             </div>
             <br>
 
             <div class="text-center">
                 <h3 class="text-center">Succesfully joined! </h3>
-                <a asp-page="Events">View more events</a>
-                <a asp-page="JoinedEvents">View Your events</a>
+                <a class="btn btn-primary" asp-page="Events">View more events</a>
+                <a class="btn btn-primary" asp-page="JoinedEvents">View Your events</a>
             </div>
     }
 
